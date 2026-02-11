@@ -1,0 +1,68 @@
+{
+  "paper": {
+    "title": "A Bayesian observer model constrained by efficient coding can explain anti-Bayesian percepts",
+    "doi": "10.1038/nn.4105"
+  },
+  "claims": [
+    {
+      "id": "C1",
+      "type": "background",
+      "text": "Efficient coding and Bayesian decoding are often treated separately; this work unifies them in one constrained observer model.",
+      "evidence": [
+        {"ref": "Intro", "page": 1}
+      ]
+    },
+    {
+      "id": "C2",
+      "type": "aim_hypothesis",
+      "text": "If encoding is efficient with respect to natural stimulus statistics, Bayesian decoding can produce repulsive (anti-Bayesian-looking) perceptual biases.",
+      "evidence": [
+        {"ref": "Fig.1", "page": 2},
+        {"ref": "Results", "page": 3}
+      ]
+    },
+    {
+      "id": "C3",
+      "type": "alternative_hypothesis",
+      "text": "If standard symmetric-likelihood Bayesian models are sufficient, repulsive biases and differential noise-source effects should not require efficient-coding constraints.",
+      "evidence": [
+        {"ref": "Fig.3d comparison", "page": 4}
+      ]
+    },
+    {
+      "id": "C4",
+      "type": "method",
+      "text": "Model constrains prior and likelihood jointly via Fisher-information-based efficient coding, then performs Bayesian decoding with explicit loss function.",
+      "evidence": [
+        {"ref": "Online Methods equations", "page": 10},
+        {"ref": "Methods text", "page": 2}
+      ]
+    },
+    {
+      "id": "C5",
+      "type": "result",
+      "text": "External stimulus noise and internal sensory noise have opposite effects on bias direction/magnitude.",
+      "evidence": [
+        {"ref": "Fig.3", "page": 4},
+        {"ref": "Fig.4d-f", "page": 5}
+      ]
+    },
+    {
+      "id": "C6",
+      "type": "result",
+      "text": "The framework explains both orientation and spatial-frequency psychophysical bias data.",
+      "evidence": [
+        {"ref": "Fig.4", "page": 5},
+        {"ref": "Fig.6/7", "page": 6}
+      ]
+    },
+    {
+      "id": "C7",
+      "type": "interpretation",
+      "text": "Apparent anti-Bayesian behavior can be Bayes-optimal once realistic encoding constraints are included.",
+      "evidence": [
+        {"ref": "Results+Discussion", "page": 7}
+      ]
+    }
+  ]
+}
