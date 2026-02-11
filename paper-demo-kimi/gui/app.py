@@ -79,6 +79,31 @@ if st.button("9) Run local delegation"):
     r = subprocess.run(cmd, capture_output=True, text=True)
     st.code((r.stdout or "") + ("\n" + r.stderr if r.stderr else ""))
 
+st.subheader("Async literature harvesting (2022-2026)")
+kw = st.text_input("Keywords (comma)", value="numerosity,magnitude,efficient coding,bayesian,anti-bayesian")
+auth = st.text_input("Preferred authors (comma)", value="")
+if st.button("10) Run async journal harvest"):
+    cmd = [
+        "python3", str(ROOT / "scripts" / "journal_harvest_async.py"),
+        "--output-root", "/Users/joonoh/Desktop/OpenClaw_Library",
+        "--year-min", "2022", "--year-max", "2026",
+        "--keywords", kw,
+        "--preferred-authors", auth,
+        "--min-delay-sec", "60", "--max-delay-sec", "180",
+    ]
+    r = subprocess.run(cmd, capture_output=True, text=True)
+    st.code((r.stdout or "") + ("\n" + r.stderr if r.stderr else ""))
+
+seed_path = st.text_input("Seeds jsonl path", value="/Users/joonoh/Desktop/OpenClaw_Library/workflow/loops/seeds.jsonl")
+if st.button("11) Build inductive queue"):
+    cmd = [
+        "python3", str(ROOT / "scripts" / "inductive_loop_async.py"),
+        "--seeds", seed_path,
+        "--year-min", "2022", "--year-max", "2026",
+    ]
+    r = subprocess.run(cmd, capture_output=True, text=True)
+    st.code((r.stdout or "") + ("\n" + r.stderr if r.stderr else ""))
+
 st.subheader("Preview outputs")
 for p in [Path(out_file), ROOT / "demo_v2_anti_bayesian" / "figure_map.md", ROOT / "demo_v2_anti_bayesian" / "post_expert.md"]:
     if p.exists():

@@ -70,3 +70,18 @@ python3 scripts/stage_c_finalize.py \
   --model moonshotai/kimi-k2.5 \
   --out demo_v2_anti_bayesian/post_expert_compact.md
 ```
+
+## Async 수집/탐색 루프
+```bash
+# 1) 저널 수집 (Nature Neuroscience/Neuron/J Neurosci, 2022-2026)
+python3 scripts/journal_harvest_async.py \
+  --output-root /Users/joonoh/Desktop/OpenClaw_Library \
+  --year-min 2022 --year-max 2026 \
+  --keywords "numerosity,magnitude,efficient coding,bayesian" \
+  --preferred-authors ""
+
+# 2) 시드 기반 inductive queue 생성
+python3 scripts/inductive_loop_async.py \
+  --seeds /Users/joonoh/Desktop/OpenClaw_Library/workflow/loops/seeds.jsonl \
+  --year-min 2022 --year-max 2026
+```
