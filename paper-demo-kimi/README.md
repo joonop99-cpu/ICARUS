@@ -33,8 +33,18 @@ streamlit run gui/app.py
 ## 전처리(파싱)는 OpenRouter, 로컬은 실행/보조
 ```bash
 # OpenRouter로 text/equation/figure 파싱 (캐시 포함)
+# task별 기본모델 자동 선택:
+# - parse_text -> google/gemini-2.0-flash-exp
+# - parse_equation -> anthropic/claude-3.5-sonnet
+# - parse_figure -> openai/gpt-4.1-mini
 export OPENROUTER_API_KEY=...
-python3 scripts/openrouter_preparse.py --task parse_text --input demo_v2_anti_bayesian/parsed.md --model google/gemini-2.0-flash-exp --out tmp/parse_text.json
+python3 scripts/openrouter_preparse.py --task parse_text --input context/context_packet.json --out tmp/parse_text.json
+
+# 모델 강제 override 가능
+python3 scripts/openrouter_preparse.py --task parse_equation --input context/context_packet.json --model google/gemini-2.0-flash-exp --out tmp/parse_eq.json
+
+# 만료 캐시 정리 (예: 72시간)
+python3 scripts/openrouter_preparse.py --cleanup-only --input README.md --cache-ttl-hours 72
 
 # 로컬(Ollama)은 보조 작업(요약/정규화/체크리스트)
 python3 local/delegate_basic.py --task summarize --input demo_v2_anti_bayesian/parsed.md --model qwen2.5:7b-instruct

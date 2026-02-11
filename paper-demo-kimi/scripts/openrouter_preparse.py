@@ -5,11 +5,16 @@ Purpose:
 - Use OpenRouter for image/text/equation parsing
 - Reuse cached responses to reduce token cost and context bloat
 """
-import argparse, hashlib, json, os
+import argparse, hashlib, json, os, time
 from pathlib import Path
 import requests
 
 DEFAULT_MODEL = "google/gemini-2.0-flash-exp"
+TASK_MODELS = {
+    "parse_text": "google/gemini-2.0-flash-exp",
+    "parse_equation": "anthropic/claude-3.5-sonnet",
+    "parse_figure": "openai/gpt-4.1-mini",
+}
 
 
 def sha(s: str) -> str:
@@ -25,16 +30,36 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--input", required=True)
     ap.add_argument("--task", choices=["parse_text", "parse_equation", "parse_figure"], default="parse_text")
-    ap.add_argument("--model", default=DEFAULT_MODEL)
+    ap.add_argument("--model", default="")
     ap.add_argument("--max-chars", type=int, default=12000)
     ap.add_argument("--cache-dir", default=".cache/openrouter")
+    ap.add_argument("--cache-ttl-hours", type=int, default=168, help="cache validity window; expired entries are recomputed")
+    ap.add_argument("--cleanup-only", action="store_true", help="only delete expired cache files and exit")
     ap.add_argument("--out", default="")
     args = ap.parse_args()
+
+    cache_dir = Path(args.cache_dir)
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    now = time.time()
+    ttl_sec = max(1, args.cache_ttl_hours) * 3600
+
+    removed = 0
+    for f in cache_dir.glob("*.json"):
+        try:
+            if now - f.stat().st_mtime > ttl_sec:
+                f.unlink(missing_ok=True)
+                removed += 1
+        except Exception:
+            pass
+    if args.cleanup_only:
+        print(f"cache_cleanup_removed={removed}")
+        return
 
     api_key = os.getenv("OPENROUTER_API_KEY", "")
     if not api_key:
         raise SystemExit("OPENROUTER_API_KEY is required")
 
+    model = args.model or TASK_MODELS.get(args.task, DEFAULT_MODEL)
     text = load_text(args.input, args.max_chars)
     sys = (
         "You are a scientific parser. Return compact JSON only. "
@@ -42,9 +67,7 @@ def main():
     )
     usr = f"task={args.task}\n\n{text}"
 
-    cache_dir = Path(args.cache_dir)
-    cache_dir.mkdir(parents=True, exist_ok=True)
-    key = sha(args.model + "\n" + sys + "\n" + usr)
+    key = sha(model + "\n" + sys + "\n" + usr)
     cache_file = cache_dir / f"{key}.json"
     if cache_file.exists():
         out = cache_file.read_text()
@@ -56,7 +79,7 @@ def main():
         return
 
     body = {
-        "model": args.model,
+        "model": model,
         "temperature": 0,
         "messages": [
             {"role": "system", "content": sys},
