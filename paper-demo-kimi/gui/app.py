@@ -33,6 +33,15 @@ if st.button("3) Query RAG"):
     r = subprocess.run(cmd, capture_output=True, text=True)
     st.code((r.stdout or "") + ("\n" + r.stderr if r.stderr else ""))
 
+st.subheader("Local delegation (Ollama)")
+local_input = st.text_input("Local task input", value=str(ROOT / "demo_v2_anti_bayesian" / "parsed.md"))
+local_model = st.text_input("Local model", value="qwen2.5:7b-instruct")
+local_task = st.selectbox("Task", options=["summarize", "normalize", "checklist"], index=0)
+if st.button("4) Run local delegation"):
+    cmd = ["python3", str(ROOT / "local" / "delegate_basic.py"), "--task", local_task, "--input", local_input, "--model", local_model]
+    r = subprocess.run(cmd, capture_output=True, text=True)
+    st.code((r.stdout or "") + ("\n" + r.stderr if r.stderr else ""))
+
 st.subheader("Preview outputs")
 for p in [Path(out_file), ROOT / "demo_v2_anti_bayesian" / "figure_map.md", ROOT / "demo_v2_anti_bayesian" / "post_expert.md"]:
     if p.exists():

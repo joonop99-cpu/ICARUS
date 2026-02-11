@@ -1,31 +1,37 @@
-# Paper Demo (Kimi k2.5)
+# paper-demo-kimi (v2 compact)
 
-이 레포는 내가 실제로 사용한 논문 처리 워크플로우 설명과, 논문 3편 데모 결과를 담고 있습니다.
+논문 분석 파이프라인의 **컴팩트 버전**입니다.
 
-## 포함 내용
-- `WORKFLOW.md`: 파이프라인 동작 방식(파싱/추론/제약/비용절감 규칙)
-- `demo/<paper_key>/parsed.md`: 논문 구조화 요약(Goal/Hypothesis/Method/Metrics/Results)
-- `demo/<paper_key>/paper_raw.md`: 로컬 파싱 원문(핵심 페이지 추출)
+## 포함 범위 (현재)
+- `demo_v2_anti_bayesian/`: 1편 완성 데모 (figure/text/math 연결)
+- `rag/`: Background 메타데이터 + 경량 RAG 인덱스
+- `scripts/`: RAG 빌드/질의 + pre-results hypothesis 생성
+- `gui/`: 워크플로우 오케스트레이션용 Streamlit GUI
+- `local/`: Ollama 로컬모델 외주 유틸
 
-## 데모 논문 3편
-1. `unifying_theory`
-   - A unifying theory explains seemingly contradictory biases in perceptual estimation (Nature Neuroscience, 2024)
-2. `anti_bayesian`
-   - A Bayesian observer model constrained by efficient coding can explain anti-Bayesian percepts (Nature Neuroscience, 2015)
-3. `structure_in_time`
-   - Finding Structure in Time (Cognitive Science, 1990)
+## 핵심 워크플로우
+1. Intro + Background 메타데이터 RAG로 **사전 가설(H1/H0)** 생성
+2. Figure/Equation/Methods 근거와 대조
+3. `Paper states / Interpretation / Speculation` 라벨로 최종 포스트 생성
 
-## 워크플로우 요약
-1. PDF 선택
-2. 로컬 무료 파싱(PyMuPDF 기반)
-3. 핵심 섹션 구조화 (`parsed.md`)
-4. 추론 모델(Kimi k2.5)로 논리/방법/지표 중심 해석
-5. 근거 기반 포스트 초안 생성
+## 빠른 실행
+```bash
+# 1) RAG 인덱스 생성
+python3 scripts/build_background_index.py --input rag/background_corpus.jsonl --output rag/background_index.json
 
-## 제약/원칙
-- 과장 금지, 근거 우선
-- 토큰 낭비 방지: 핵심 페이지/핵심 섹션 우선 처리
-- 사실/해석/추측 분리
+# 2) 사전 가설 생성 (Results 읽기 전)
+python3 scripts/generate_hypothesis_stage.py \
+  --paper-id anti_bayesian_2015 \
+  --intro demo_v2_anti_bayesian/parsed.md \
+  --rag-index rag/background_index.json \
+  --out demo_v2_anti_bayesian/pre_results_hypothesis.md
 
----
-필요하면 다음 단계로 `figure_map.md`, `evidence_map.json`, `post_expert.md`를 각 논문별로 추가 확장합니다.
+# 3) GUI 실행
+streamlit run gui/app.py
+```
+
+## 로컬모델 외주 (토큰 절약)
+```bash
+# 요약/정규화/초안 같은 기본 작업은 Ollama로 처리
+python3 local/delegate_basic.py --task summarize --input demo_v2_anti_bayesian/parsed.md --model qwen2.5:7b-instruct
+```
