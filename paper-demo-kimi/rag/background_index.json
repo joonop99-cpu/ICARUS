@@ -1,0 +1,227 @@
+{
+  "n_docs": 3,
+  "docs": [
+    {
+      "paper_id": "anti_bayesian_2015",
+      "meta": {
+        "paper_id": "anti_bayesian_2015",
+        "title": "A Bayesian observer model constrained by efficient coding can explain anti-Bayesian percepts",
+        "year": 2015,
+        "authors": [
+          "Wei",
+          "Stocker"
+        ],
+        "field_tags": [
+          "perception",
+          "bayesian-modeling",
+          "efficient-coding",
+          "psychophysics"
+        ],
+        "background": "Perception studies often separate efficient coding (representation constraints) from Bayesian decoding (inference from noisy measurements).",
+        "problem_gap": "Standard Bayesian models with symmetric likelihood commonly predict attraction to prior, but psychophysics often reports repulsive biases.",
+        "why_this_study": "To unify encoding constraints and decoding in one observer model and test whether anti-Bayesian-looking behavior can emerge from Bayesian inference under realistic encoding.",
+        "citations": [
+          {
+            "label": "Girshick et al., 2011",
+            "title": "Cardinal rules: visual orientation perception reflects knowledge of environmental statistics",
+            "doi": "10.1038/nn.2831"
+          },
+          {
+            "label": "Jazayeri & Shadlen, 2010",
+            "title": "Temporal context calibrates interval timing",
+            "doi": "10.1038/nn.2590"
+          }
+        ]
+      },
+      "vec": {
+        "a": 1.2876820724517808,
+        "bayesian": 6.772588722239782,
+        "observer": 3.386294361119891,
+        "model": 3.386294361119891,
+        "constrained": 1.6931471805599454,
+        "by": 1.6931471805599454,
+        "efficient": 3.386294361119891,
+        "coding": 3.386294361119891,
+        "can": 3.386294361119891,
+        "explain": 1.6931471805599454,
+        "anti-bayesian": 1.6931471805599454,
+        "percepts": 1.6931471805599454,
+        "wei": 1.6931471805599454,
+        "stocker": 1.6931471805599454,
+        "perception": 2.5753641449035616,
+        "bayesian-modeling": 1.2876820724517808,
+        "efficient-coding": 1.2876820724517808,
+        "psychophysics": 3.386294361119891,
+        "studies": 1.6931471805599454,
+        "often": 3.386294361119891,
+        "separate": 1.6931471805599454,
+        "representation": 1.6931471805599454,
+        "constraints": 3.386294361119891,
+        "from": 3.8630462173553424,
+        "decoding": 3.386294361119891,
+        "inference": 3.386294361119891,
+        "noisy": 1.6931471805599454,
+        "measurements": 1.6931471805599454,
+        "standard": 1.6931471805599454,
+        "models": 1.6931471805599454,
+        "with": 1.6931471805599454,
+        "symmetric": 1.6931471805599454,
+        "likelihood": 1.6931471805599454,
+        "commonly": 1.6931471805599454,
+        "predict": 1.6931471805599454,
+        "attraction": 1.6931471805599454,
+        "to": 2.0,
+        "prior": 1.2876820724517808,
+        "but": 1.6931471805599454,
+        "reports": 1.6931471805599454,
+        "repulsive": 1.2876820724517808,
+        "biases": 1.2876820724517808,
+        "unify": 1.6931471805599454,
+        "encoding": 3.386294361119891,
+        "and": 2.0,
+        "in": 1.0,
+        "one": 1.2876820724517808,
+        "test": 1.6931471805599454,
+        "whether": 1.6931471805599454,
+        "anti-bayesian-looking": 1.6931471805599454,
+        "behavior": 1.0,
+        "emerge": 1.6931471805599454,
+        "under": 1.6931471805599454,
+        "realistic": 1.6931471805599454
+      },
+      "norm": 17.271450974734705
+    },
+    {
+      "paper_id": "unifying_theory_2024",
+      "meta": {
+        "paper_id": "unifying_theory_2024",
+        "title": "A unifying theory explains seemingly contradictory biases in perceptual estimation",
+        "year": 2024,
+        "authors": [
+          "(see paper)"
+        ],
+        "field_tags": [
+          "perception",
+          "bayesian-modeling",
+          "efficient-coding"
+        ],
+        "background": "Recent work revisits contradictory perceptual bias findings and seeks one explanatory principle.",
+        "problem_gap": "Different paradigms report attractive vs repulsive effects without a single accepted account.",
+        "why_this_study": "To provide a unified account tying noise assumptions, prior geometry, and decoder behavior.",
+        "citations": [
+          {
+            "label": "Wei & Stocker, 2015",
+            "title": "A Bayesian observer model constrained by efficient coding can explain anti-Bayesian percepts",
+            "doi": "10.1038/nn.4105"
+          }
+        ]
+      },
+      "vec": {
+        "a": 3.8630462173553424,
+        "unifying": 1.6931471805599454,
+        "theory": 1.6931471805599454,
+        "explains": 1.6931471805599454,
+        "seemingly": 1.6931471805599454,
+        "contradictory": 3.386294361119891,
+        "biases": 1.2876820724517808,
+        "in": 1.0,
+        "perceptual": 3.386294361119891,
+        "estimation": 1.6931471805599454,
+        "see": 1.2876820724517808,
+        "paper": 1.2876820724517808,
+        "perception": 1.2876820724517808,
+        "bayesian-modeling": 1.2876820724517808,
+        "efficient-coding": 1.2876820724517808,
+        "recent": 1.6931471805599454,
+        "work": 1.6931471805599454,
+        "revisits": 1.6931471805599454,
+        "bias": 1.6931471805599454,
+        "findings": 1.6931471805599454,
+        "and": 2.0,
+        "seeks": 1.6931471805599454,
+        "one": 1.2876820724517808,
+        "explanatory": 1.6931471805599454,
+        "principle": 1.6931471805599454,
+        "different": 1.6931471805599454,
+        "paradigms": 1.6931471805599454,
+        "report": 1.6931471805599454,
+        "attractive": 1.6931471805599454,
+        "vs": 1.6931471805599454,
+        "repulsive": 1.2876820724517808,
+        "effects": 1.6931471805599454,
+        "without": 1.6931471805599454,
+        "single": 1.6931471805599454,
+        "accepted": 1.6931471805599454,
+        "account": 3.386294361119891,
+        "to": 1.0,
+        "provide": 1.6931471805599454,
+        "unified": 1.6931471805599454,
+        "tying": 1.6931471805599454,
+        "noise": 1.6931471805599454,
+        "assumptions": 1.6931471805599454,
+        "prior": 1.2876820724517808,
+        "geometry": 1.6931471805599454,
+        "decoder": 1.6931471805599454,
+        "behavior": 1.0
+      },
+      "norm": 12.425091328896082
+    },
+    {
+      "paper_id": "finding_structure_in_time_1990",
+      "meta": {
+        "paper_id": "finding_structure_in_time_1990",
+        "title": "Finding Structure in Time",
+        "year": 1990,
+        "authors": [
+          "(see paper)"
+        ],
+        "field_tags": [
+          "cognitive-science",
+          "sequence-learning",
+          "temporal-structure"
+        ],
+        "background": "Humans infer latent temporal regularities from sequential input.",
+        "problem_gap": "Mechanistic links between observed behavior and latent structure representations remained underspecified.",
+        "why_this_study": "To characterize how temporal structure is discovered and represented during learning.",
+        "citations": []
+      },
+      "vec": {
+        "finding": 1.6931471805599454,
+        "structure": 5.079441541679836,
+        "in": 1.0,
+        "time": 1.6931471805599454,
+        "see": 1.2876820724517808,
+        "paper": 1.2876820724517808,
+        "cognitive-science": 1.6931471805599454,
+        "sequence-learning": 1.6931471805599454,
+        "temporal-structure": 1.6931471805599454,
+        "humans": 1.6931471805599454,
+        "infer": 1.6931471805599454,
+        "latent": 3.386294361119891,
+        "temporal": 3.386294361119891,
+        "regularities": 1.6931471805599454,
+        "from": 1.2876820724517808,
+        "sequential": 1.6931471805599454,
+        "input": 1.6931471805599454,
+        "mechanistic": 1.6931471805599454,
+        "links": 1.6931471805599454,
+        "between": 1.6931471805599454,
+        "observed": 1.6931471805599454,
+        "behavior": 1.0,
+        "and": 2.0,
+        "representations": 1.6931471805599454,
+        "remained": 1.6931471805599454,
+        "underspecified": 1.6931471805599454,
+        "to": 1.0,
+        "characterize": 1.6931471805599454,
+        "how": 1.6931471805599454,
+        "is": 1.6931471805599454,
+        "discovered": 1.6931471805599454,
+        "represented": 1.6931471805599454,
+        "during": 1.6931471805599454,
+        "learning": 1.6931471805599454
+      },
+      "norm": 11.380290757959695
+    }
+  ]
+}

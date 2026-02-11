@@ -61,3 +61,20 @@
   - `marker-pdf`
   - `grobid`
 - Add a strict evidence-checker pass before final post.
+
+## New implementation: Background metadata + pre-results hypothesis stage
+1. Build shared field-level background metadata (`rag/background_corpus.jsonl`).
+2. Index it (`scripts/build_background_index.py`) for lightweight RAG retrieval.
+3. Before reading full Results, generate `pre_results_hypothesis.md` using:
+   - paper intro/background snippet
+   - retrieved related background/problem-gap entries from RAG
+4. In this stage, Kimi must output:
+   - Why this study (context + gap)
+   - H1 / H0
+   - must-observe predictions for each hypothesis
+   - what figure/equation would discriminate between H1 vs H0.
+
+## Kimi usage contract (explicit)
+- **Stage A (pre-results):** hypothesis planner from intro + RAG context only.
+- **Stage B (post-methods/results):** evidence reconciliation against figures/equations.
+- **Stage C (final post):** expert write-up with `Paper states / Interpretation / Speculation` labels.
