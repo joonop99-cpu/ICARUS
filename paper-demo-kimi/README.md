@@ -30,8 +30,17 @@ python3 scripts/generate_hypothesis_stage.py \
 streamlit run gui/app.py
 ```
 
-## 로컬모델 외주 (토큰 절약)
+## 전처리(파싱)는 OpenRouter, 로컬은 실행/보조
 ```bash
-# 요약/정규화/초안 같은 기본 작업은 Ollama로 처리
+# OpenRouter로 text/equation/figure 파싱 (캐시 포함)
+export OPENROUTER_API_KEY=...
+python3 scripts/openrouter_preparse.py --task parse_text --input demo_v2_anti_bayesian/parsed.md --model google/gemini-2.0-flash-exp --out tmp/parse_text.json
+
+# 로컬(Ollama)은 보조 작업(요약/정규화/체크리스트)
 python3 local/delegate_basic.py --task summarize --input demo_v2_anti_bayesian/parsed.md --model qwen2.5:7b-instruct
+```
+
+## aggressive context compaction
+```bash
+python3 scripts/context_compact.py --root . --out context/context_packet.json --per-file 2500
 ```
