@@ -54,3 +54,19 @@ python3 local/delegate_basic.py --task summarize --input demo_v2_anti_bayesian/p
 ```bash
 python3 scripts/context_compact.py --root . --out context/context_packet.json --per-file 2500
 ```
+
+## Stage B/C (compact packet 고정)
+```bash
+# Stage B: evidence reconciliation (Kimi)
+python3 scripts/stage_b_reconcile.py \
+  --packet context/context_packet.json \
+  --model moonshotai/kimi-k2.5 \
+  --out demo_v2_anti_bayesian/stage_b_reconcile.md
+
+# Stage C: final expert post (Kimi)
+python3 scripts/stage_c_finalize.py \
+  --packet context/context_packet.json \
+  --stage-b demo_v2_anti_bayesian/stage_b_reconcile.md \
+  --model moonshotai/kimi-k2.5 \
+  --out demo_v2_anti_bayesian/post_expert_compact.md
+```
